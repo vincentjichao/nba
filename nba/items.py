@@ -13,6 +13,6 @@ class NbaStoryItem(scrapy.Item):
     # name = scrapy.Field()
     title = scrapy.Field()
     time = scrapy.Field()
-    #content = scrapy.Field()
-    #piclink = scrapy.Field()
+    content = scrapy.Field()
+    piclink = scrapy.Field()
     

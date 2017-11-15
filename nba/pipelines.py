@@ -17,7 +17,13 @@ class NbaStoryTimeCheckPipeline(object):
         timenow = datetime.today()
         storytime = datetime.strptime(item['time'], '%Y-%m-%dT%H:%M:%SZ')
         cha_time = timenow - storytime - timedelta(hours=8)
-        if cha_time.total_seconds()/3600 < 0.6:
+        if cha_time.total_seconds()/3600 > 0.6:
+            con = ''
+            for i in set(item['piclink']):
+                con += '<img src="' + i + '" />'
+            for i in item['content']:
+                con += i
+            item['content'] = con
             return item
         else:
             raise DropItem('历史文章-----'+item['time'])
@@ -25,4 +31,16 @@ class NbaStoryTimeCheckPipeline(object):
 class NbaStoryMailPipeline(object):
     
     def process_item(self, item, spider):
-        mail_server = smtplib.
+        mail_server = smtplib.SMTP(host='smtp.qq.com', port=587)
+        mail_server.starttls()
+        mail_server.set_debuglevel(1)
+        mail_server.login(user='497521249@qq.com', password='mferuahgophvcbcg')
+        msg = email.mime.text.MIMEText(item['content'], 'html', 'utf-8')
+        msg['From'] = 'vincent'
+        msg['To'] = 'somebody'
+        msg['Subject'] = email.header.Header(item['title'], 'utf-8').encode()
+        mail_server.sendmail('497521249@qq.com', 
+                             ['497521249@qq.com', '2488317486@qq.com'],
+                             msg.as_string())
+        mail_server.quit()
+        return item

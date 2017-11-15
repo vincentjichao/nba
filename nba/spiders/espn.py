@@ -17,6 +17,6 @@ class EspnSpider(CrawlSpider):
         nba_story_item = NbaStoryItem()
         nba_story_item['title'] = response.css('header.article-header>h1::text').extract()[0]
         nba_story_item['time'] = response.css('span.timestamp::attr(data-date)').extract()[0]
-        #nba_story_item['content'] = response.css('div.article-body>p').extract()
-        #nba_story_item['piclink'] = response.css('source::attr(data-srcset)').extract()
+        nba_story_item['content'] = response.css('div.article-body>p').extract()
+        nba_story_item['piclink'] = response.css('source::attr(data-srcset)').extract()
         return nba_story_item
