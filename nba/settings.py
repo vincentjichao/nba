@@ -69,6 +69,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'nba.pipelines.NbaStoryTimeCheckPipeline': 100,
+    'nba.pipelines.NbaStoryMailPipeline': 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
