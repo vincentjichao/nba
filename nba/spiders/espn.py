@@ -10,13 +10,14 @@ class EspnSpider(CrawlSpider):
     start_urls = ['http://espn.com/nba/']
     
     rules = {
-            Rule(LinkExtractor(allow=(r'/nba/story/_/id.+',),restrict_css='a'), callback='parse_item')
+            Rule(LinkExtractor(allow=(r'/nba/story/_/id.+',),restrict_css='a'), callback='parse_story_item')
             }
 
-    def parse_item(self, response):
+    def parse_story_item(self, response):
         nba_story_item = NbaStoryItem()
         nba_story_item['title'] = response.css('header.article-header>h1::text').extract()[0]
         nba_story_item['time'] = response.css('span.timestamp::attr(data-date)').extract()[0]
-        nba_story_item['content'] = response.css('div.article-body>p').extract()
-        nba_story_item['piclink'] = response.css('source::attr(data-srcset)').extract()
+        nba_story_item['content'] = response.css('div.article-body p,img,h2').extract()
+        nba_story_item['piclink'] = response.css('picture>source:nth-child(1)::attr(srcset)').extract()
+        
         return nba_story_item

@@ -17,10 +17,10 @@ class NbaStoryTimeCheckPipeline(object):
         timenow = datetime.today()
         storytime = datetime.strptime(item['time'], '%Y-%m-%dT%H:%M:%SZ')
         cha_time = timenow - storytime - timedelta(hours=8)
-        if cha_time.total_seconds()/3600 > 0.6:
+        if cha_time.total_seconds()/3600 < 0.6:
             con = ''
-            for i in set(item['piclink']):
-                con += '<img src="' + i + '" />'
+            for i in item['piclink']:
+                con += '<img src="' + i + '" />' + '<br />'
             for i in item['content']:
                 con += i
             item['content'] = con

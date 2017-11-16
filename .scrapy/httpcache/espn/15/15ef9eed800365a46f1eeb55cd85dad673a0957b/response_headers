@@ -1,0 +1,13 @@
+Date: Thu, 16 Nov 2017 05:47:10 GMT
+Content-Type: text/html;charset=UTF-8
+X-Application-Context: sCoreTc:AWS:8080
+Access-Control-Allow-Origin: *
+X-Ua-Compatible: IE=Edge
+Etag: W/"229bd3ca2eec344969ed3a5e09e0884d401bb6d7"
+Content-Encoding: gzip
+X-Varnish-Backend: sCoreTc
+X-Age: 0
+X-Chained-Ha-Request: yes
+Vary: Accept-Encoding
+Accept-Ranges: bytes
+Cache-Control: max-age=0, must-revalidate
