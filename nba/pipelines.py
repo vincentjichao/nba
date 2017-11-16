@@ -13,10 +13,14 @@ import smtplib
 class NbaStoryTimeCheckPipeline(object):
     
     def process_item(self, item, spider):
+        if item['time'] == 0:
+            item['content'] = item['content'][0]
+            return item
         #checktime = timedelta(hours=0.6)
         timenow = datetime.today()
         storytime = datetime.strptime(item['time'], '%Y-%m-%dT%H:%M:%SZ')
         cha_time = timenow - storytime - timedelta(hours=8)
+        #if item
         if cha_time.total_seconds()/3600 < 0.6:
             con = ''
             for i in item['piclink']:
