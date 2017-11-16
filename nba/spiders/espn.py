@@ -10,7 +10,7 @@ class EspnSpider(CrawlSpider):
     start_urls = ['http://espn.com/nba/']
     
     rules = (
-#            Rule(LinkExtractor(allow=(r'/nba/story/_/id.+',),restrict_css='a'), callback='parse_story_item'),
+             Rule(LinkExtractor(allow=(r'/nba/story/_/id.+',),restrict_css='a'), callback='parse_story_item'),
 #            Rule(LinkExtractor(allow=(r'/espn/now/.+',), restrict_css='a'), callback='parse_now_item'),
              Rule(LinkExtractor(allow=('/espn.+?nowId=.+',), restrict_css='a'), callback='parse_now_item'),
             )
